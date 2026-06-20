@@ -31,39 +31,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void Start()
     {
-        int totalComplete = 0;
-        int levelId = 1;
-        foreach (GameObject level in levelList)
-        {
-            if (LevelsBeatSave.IsLevelComplete(levelId))
-            {
-                totalComplete++;
-                TMP_Text timer = level.transform.Find("CompleteTime").GetComponent<TMP_Text>();
-                float time = LevelsBeatSave.GetBestTime(levelId);
-                timer.text = FormatTime(time);
-            }
-            if (levelId > 3)
-            {
-                
-                //disable if not enough levels complete
-                if (totalComplete + 3 < levelId)
-                {
-                    GameObject buttonObject = level.transform.Find("BtnLvl").gameObject;
-                    Button button = buttonObject.GetComponent<Button>();
-                    button.interactable = false;
-
-                    TMP_Text btnText = button.transform.Find("text").GetComponent<TMP_Text>();
-                    btnText.text = "locked";
-
-                }
-            }
-
-            levelId++;
-        }
-
-
+        RefreshMenu();
     }
-
+    
 
 
     //helper for timer format
@@ -77,4 +47,49 @@ public class NewMonoBehaviourScript : MonoBehaviour
                seconds.ToString("00") + "." + 
                milliseconds.ToString("00");
     }
+
+
+    private void RefreshMenu()
+    {
+        int totalComplete = 0;
+        int levelId = 1;
+        foreach (GameObject level in levelList)
+        {
+            TMP_Text timer = level.transform.Find("CompleteTime").GetComponent<TMP_Text>();
+            GameObject buttonObject = level.transform.Find("BtnLvl").gameObject;
+            Button button = buttonObject.GetComponent<Button>();
+            TMP_Text btnText = buttonObject.GetComponentInChildren<TMP_Text>();
+
+
+            //def values
+            timer.text = "--:--.--";
+            button.interactable = true;
+            btnText.text = "Level " + levelId;
+
+            if (LevelsBeatSave.IsLevelComplete(levelId))
+            {
+                totalComplete++;
+                
+                float time = LevelsBeatSave.GetBestTime(levelId);
+                timer.text = FormatTime(time);
+            }
+            if (levelId > 3)
+            {
+                //disable if not enough levels complete
+                if (totalComplete + 3 < levelId)
+                {
+                    button.interactable = false;
+                    btnText.text = "locked";
+                }
+            }
+            levelId++;
+        }
+    }
+    ///TESTING SCRIPT TO DELETE PLAYER DATA
+    public void DeleteData()
+    {
+        LevelsBeatSave.DeleteEVERYTHING();
+        RefreshMenu();
+    }
+
 }
