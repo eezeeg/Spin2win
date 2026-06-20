@@ -16,6 +16,11 @@ public class BubbleDoor : MonoBehaviour
     [Header("Options")]
     [SerializeField] private bool invertGravityDirection = false;
 
+    [Header("Sine Wave Mode")]
+    [SerializeField] private bool useSineWave = false;
+    [SerializeField] private float sineSpeed = 1f;
+    [SerializeField] private float sineOffset = 0f;
+
     private float currentVelocityY;
 
     private void Start()
@@ -31,6 +36,24 @@ public class BubbleDoor : MonoBehaviour
         if (gravityReference == null || doorVisual == null)
             return;
 
+        // Sine wave mode
+        if (useSineWave)
+        {
+            Vector3 localPosition = doorVisual.localPosition;
+
+            float t = (Mathf.Sin(Time.time * sineSpeed + sineOffset) + 1f) * 0.5f;
+
+            localPosition.y = Mathf.Lerp(
+                minLocalY,
+                maxLocalY,
+                t
+            );
+
+            doorVisual.localPosition = localPosition;
+            return;
+        }
+
+        // Bubble gravity mode
         Vector3 worldGravityDirection = -gravityReference.up.normalized;
 
         Vector3 railWorldDirection = doorVisual.parent != null
@@ -58,21 +81,21 @@ public class BubbleDoor : MonoBehaviour
             damping * Time.deltaTime
         );
 
-        Vector3 localPosition = doorVisual.localPosition;
-        localPosition.y += currentVelocityY * Time.deltaTime;
+        Vector3 localPositionGravity = doorVisual.localPosition;
+        localPositionGravity.y += currentVelocityY * Time.deltaTime;
 
-        if (localPosition.y <= minLocalY)
+        if (localPositionGravity.y <= minLocalY)
         {
-            localPosition.y = minLocalY;
+            localPositionGravity.y = minLocalY;
             currentVelocityY = 0f;
         }
-        else if (localPosition.y >= maxLocalY)
+        else if (localPositionGravity.y >= maxLocalY)
         {
-            localPosition.y = maxLocalY;
+            localPositionGravity.y = maxLocalY;
             currentVelocityY = 0f;
         }
 
-        doorVisual.localPosition = localPosition;
+        doorVisual.localPosition = localPositionGravity;
     }
 
     private void OnDrawGizmosSelected()
