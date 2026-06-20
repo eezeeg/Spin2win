@@ -20,9 +20,13 @@ public class BasicMovement : MonoBehaviour
     [SerializeField] private float gravityStrength = 25f;
     [SerializeField] private float maxFallSpeed = 35f;
 
+    [Header("Wall Fix")]
+    [SerializeField] private float wallCheckDistance = 0.45f;
+    [SerializeField] private LayerMask wallLayer;
+
     [Header("Maze / Camera Rotation")]
     [SerializeField] private Transform mazeToRotate;
-    [SerializeField] private float rotationSpeed = 10f;
+    [SerializeField] private float rotationSpeed = 150f;
     [SerializeField] private Vector3 rotationAxis = Vector3.forward;
 
     private Rigidbody rb;
@@ -56,9 +60,7 @@ public class BasicMovement : MonoBehaviour
     private Vector3 GetGravityDirection()
     {
         if (Camera.main == null)
-        {
             return Vector3.down;
-        }
 
         return -Camera.main.transform.up.normalized;
     }
@@ -71,9 +73,7 @@ public class BasicMovement : MonoBehaviour
     private Vector3 GetMoveDirection()
     {
         if (Camera.main == null)
-        {
             return Vector3.right;
-        }
 
         return Camera.main.transform.right.normalized;
     }
@@ -95,6 +95,17 @@ public class BasicMovement : MonoBehaviour
 
         Vector3 moveDirection = GetMoveDirection();
 
+        bool pushingLeftWall = horizontal < 0f &&
+            Physics.Raycast(transform.position, -moveDirection, wallCheckDistance, wallLayer);
+
+        bool pushingRightWall = horizontal > 0f &&
+            Physics.Raycast(transform.position, moveDirection, wallCheckDistance, wallLayer);
+
+        if (pushingLeftWall || pushingRightWall)
+        {
+            horizontal = 0f;
+        }
+
         Vector3 velocity = rb.linearVelocity;
 
         Vector3 currentMoveVelocity = Vector3.Project(velocity, moveDirection);
@@ -110,8 +121,6 @@ public class BasicMovement : MonoBehaviour
         if (!Input.GetKeyDown(KeyCode.Space))
             return;
 
-        Debug.Log("Jump pressed. Grounded: " + isGrounded);
-
         if (!isGrounded)
             return;
 
@@ -119,7 +128,6 @@ public class BasicMovement : MonoBehaviour
         Vector3 jumpDirection = GetJumpDirection();
 
         Vector3 velocity = rb.linearVelocity;
-
         velocity -= Vector3.Project(velocity, gravityDirection);
 
         rb.linearVelocity = velocity;
@@ -184,12 +192,13 @@ public class BasicMovement : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Vector3 gravityDirection = Vector3.down;
+        Vector3 gravityDirection = Camera.main != null
+            ? -Camera.main.transform.up.normalized
+            : Vector3.down;
 
-        if (Camera.main != null)
-        {
-            gravityDirection = -Camera.main.transform.up.normalized;
-        }
+        Vector3 moveDirection = Camera.main != null
+            ? Camera.main.transform.right.normalized
+            : Vector3.right;
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(
@@ -201,6 +210,16 @@ public class BasicMovement : MonoBehaviour
         Gizmos.DrawLine(
             transform.position,
             transform.position + gravityDirection * 2f
+        );
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(
+            transform.position,
+            transform.position + moveDirection * wallCheckDistance
+        );
+        Gizmos.DrawLine(
+            transform.position,
+            transform.position - moveDirection * wallCheckDistance
         );
     }
 }
