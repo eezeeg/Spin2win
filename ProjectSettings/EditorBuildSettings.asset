@@ -4,6 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scene/MainMenuEezee.unity
+    guid: a6227ec593b61ad438e2ac9fd1f8ce8f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
