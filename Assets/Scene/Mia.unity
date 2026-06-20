@@ -169,7 +169,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101474585}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -236,7 +236,6 @@ Transform:
   - {fileID: 754465720}
   - {fileID: 797970920}
   - {fileID: 436751236}
-  - {fileID: 1121709305}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &101474590
@@ -294,7 +293,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 56
   m_CollisionDetection: 1
 --- !u!114 &101474593
 MonoBehaviour:
@@ -1098,6 +1097,7 @@ GameObject:
   - component: {fileID: 1121709305}
   - component: {fileID: 1121709304}
   - component: {fileID: 1121709303}
+  - component: {fileID: 1121709306}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1173,12 +1173,26 @@ Transform:
   m_GameObject: {fileID: 1121709302}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -16.666666}
-  m_LocalScale: {x: 1.6666666, y: 1.6666666, z: 1.6666666}
+  m_LocalPosition: {x: -2.94, y: 0.958, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 101474589}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1121709306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121709302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0ed486e167aea4f9c244fb37a6d969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraFollowPlayer
+  player: {fileID: 101474589}
+  followSpeed: 18.02
 --- !u!1 &1274218670
 GameObject:
   m_ObjectHideFlags: 0
@@ -2285,6 +2299,7 @@ SceneRoots:
   - {fileID: 893206707}
   - {fileID: 1568033466}
   - {fileID: 101474589}
+  - {fileID: 1121709305}
   - {fileID: 346145973}
   - {fileID: 900295298}
   - {fileID: 1482831120}
