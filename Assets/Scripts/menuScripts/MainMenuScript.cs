@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-    [SerializeField]
-    int test;
-
+    [SerializeField] private GameObject panelMain;
+    [SerializeField] private GameObject panelSelect;
     public void PlayGame()
     {
-        //eezee is test playlevel
-        UnityEngine.SceneManagement.SceneManager.LoadScene("eezee");
+        panelMain.SetActive(false);
+        panelSelect.SetActive(true);
     }
     public void QuitGame()
     {
@@ -16,10 +15,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
     public void LoadLevel(int levelId)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Level_" + levelId);
+        //eezee is test playlevel
+        UnityEngine.SceneManagement.SceneManager.LoadScene("eezee");
+
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("Level_" + levelId);
     }
     public void ReturnMain()
     {
-
+        panelMain.SetActive(true);
+        panelSelect.SetActive(false);
     }
 }
