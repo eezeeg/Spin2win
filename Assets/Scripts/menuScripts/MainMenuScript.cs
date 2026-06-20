@@ -15,10 +15,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
     public void LoadLevel(int levelId)
     {
-        //eezee is test playlevel
-        UnityEngine.SceneManagement.SceneManager.LoadScene("eezee");
-
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("Level_" + levelId);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level_" + levelId);
     }
     public void ReturnMain()
     {
