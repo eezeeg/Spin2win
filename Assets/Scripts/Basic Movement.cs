@@ -7,39 +7,32 @@ public class BasicMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
 
     [Header("Jump")]
-    [SerializeField] private float jumpForce = 7f;
-    [SerializeField] private float groundCheckRadius = 0.2f;
+    [SerializeField] private float jumpForce = 9f;
+    [SerializeField] private float groundCheckDistance = 0.45f;
+    [SerializeField] private float groundCheckRadius = 0.25f;
     [SerializeField] private LayerMask groundLayer;
 
     [Header("Jump Feel")]
-    [SerializeField] private float fallMultiplier = 2.5f;
-    [SerializeField] private float lowJumpMultiplier = 2f;
+    [SerializeField] private float fallMultiplier = 3.5f;
+    [SerializeField] private float lowJumpMultiplier = 2.5f;
 
     [Header("Custom Gravity")]
-    [SerializeField] private float startGravity = -10f;
-    [SerializeField] private float gravityIncreasePerSecond = -20f;
-    [SerializeField] private float maxFallSpeed = -35f;
+    [SerializeField] private float gravityStrength = 25f;
+    [SerializeField] private float maxFallSpeed = 35f;
 
-    [Header("Wall Fix")]
-    [SerializeField] private float wallCheckDistance = 0.45f;
-    [SerializeField] private LayerMask wallLayer;
-
-    [Header("Maze Rotation")]
+    [Header("Maze / Camera Rotation")]
     [SerializeField] private Transform mazeToRotate;
-    [SerializeField] private float rotationSpeed = 150f;
+    [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private Vector3 rotationAxis = Vector3.forward;
 
     private Rigidbody rb;
     private float targetRotation;
-    private float currentGravity;
     private bool isGrounded;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
-
-        currentGravity = startGravity;
 
         if (mazeToRotate != null)
         {
@@ -60,76 +53,115 @@ public class BasicMovement : MonoBehaviour
         ApplyCustomGravity();
     }
 
+    private Vector3 GetGravityDirection()
+    {
+        if (Camera.main == null)
+        {
+            return Vector3.down;
+        }
+
+        return -Camera.main.transform.up.normalized;
+    }
+
+    private Vector3 GetJumpDirection()
+    {
+        return -GetGravityDirection();
+    }
+
+    private Vector3 GetMoveDirection()
+    {
+        if (Camera.main == null)
+        {
+            return Vector3.right;
+        }
+
+        return Camera.main.transform.right.normalized;
+    }
+
     private void CheckGrounded()
     {
+        Vector3 gravityDirection = GetGravityDirection();
+
         isGrounded = Physics.CheckSphere(
-            transform.position - new Vector3(0f, 0.4f, 0f),
+            transform.position + gravityDirection * groundCheckDistance,
             groundCheckRadius,
             groundLayer
         );
-
-        if (isGrounded && rb.linearVelocity.y <= 0f)
-        {
-            currentGravity = startGravity;
-        }
     }
 
     private void HandleMovement()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
 
-        bool pushingLeftWall = horizontal < 0f && Physics.Raycast(transform.position, Vector3.left, wallCheckDistance, wallLayer);
-        bool pushingRightWall = horizontal > 0f && Physics.Raycast(transform.position, Vector3.right, wallCheckDistance, wallLayer);
-
-        if (pushingLeftWall || pushingRightWall)
-        {
-            horizontal = 0f;
-        }
+        Vector3 moveDirection = GetMoveDirection();
 
         Vector3 velocity = rb.linearVelocity;
-        velocity.x = horizontal * moveSpeed;
+
+        Vector3 currentMoveVelocity = Vector3.Project(velocity, moveDirection);
+        Vector3 wantedMoveVelocity = moveDirection * horizontal * moveSpeed;
+
+        velocity += wantedMoveVelocity - currentMoveVelocity;
+
         rb.linearVelocity = velocity;
     }
 
     private void HandleJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            Vector3 velocity = rb.linearVelocity;
-            velocity.y = 0f;
-            rb.linearVelocity = velocity;
+        if (!Input.GetKeyDown(KeyCode.Space))
+            return;
 
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
+        Debug.Log("Jump pressed. Grounded: " + isGrounded);
+
+        if (!isGrounded)
+            return;
+
+        Vector3 gravityDirection = GetGravityDirection();
+        Vector3 jumpDirection = GetJumpDirection();
+
+        Vector3 velocity = rb.linearVelocity;
+
+        velocity -= Vector3.Project(velocity, gravityDirection);
+
+        rb.linearVelocity = velocity;
+
+        rb.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
     }
 
     private void ApplyCustomGravity()
     {
-        Vector3 velocity = rb.linearVelocity;
+        Vector3 gravityDirection = GetGravityDirection();
 
-        // Falling
-        if (velocity.y < 0)
+        float fallingSpeed = Vector3.Dot(rb.linearVelocity, gravityDirection);
+
+        float multiplier = 1f;
+
+        if (fallingSpeed > 0f)
         {
-            velocity.y += startGravity * fallMultiplier * Time.fixedDeltaTime;
+            multiplier = fallMultiplier;
         }
-        // Rising but jump button released
-        else if (velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        else if (!Input.GetKey(KeyCode.Space))
         {
-            velocity.y += startGravity * lowJumpMultiplier * Time.fixedDeltaTime;
-        }
-        // Normal ascent
-        else
-        {
-            velocity.y += startGravity * Time.fixedDeltaTime;
+            multiplier = lowJumpMultiplier;
         }
 
-        velocity.y = Mathf.Max(velocity.y, maxFallSpeed);
+        rb.AddForce(
+            gravityDirection * gravityStrength * multiplier,
+            ForceMode.Acceleration
+        );
 
-        rb.linearVelocity = velocity;
+        fallingSpeed = Vector3.Dot(rb.linearVelocity, gravityDirection);
+
+        if (fallingSpeed > maxFallSpeed)
+        {
+            Vector3 excessFallVelocity = gravityDirection * (fallingSpeed - maxFallSpeed);
+            rb.linearVelocity -= excessFallVelocity;
+        }
     }
 
     private void HandleRotation()
     {
+        if (mazeToRotate == null)
+            return;
 
         float scroll = Input.mouseScrollDelta.y;
 
@@ -138,7 +170,10 @@ public class BasicMovement : MonoBehaviour
             targetRotation += scroll * rotationSpeed;
         }
 
-        Quaternion targetRot = Quaternion.AngleAxis(targetRotation, rotationAxis.normalized);
+        Quaternion targetRot = Quaternion.AngleAxis(
+            targetRotation,
+            rotationAxis.normalized
+        );
 
         mazeToRotate.rotation = Quaternion.Slerp(
             mazeToRotate.rotation,
@@ -149,11 +184,23 @@ public class BasicMovement : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position - new Vector3(0f, 0.4f, 0f), groundCheckRadius);
+        Vector3 gravityDirection = Vector3.down;
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.left * wallCheckDistance);
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.right * wallCheckDistance);
+        if (Camera.main != null)
+        {
+            gravityDirection = -Camera.main.transform.up.normalized;
+        }
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(
+            transform.position + gravityDirection * groundCheckDistance,
+            groundCheckRadius
+        );
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(
+            transform.position,
+            transform.position + gravityDirection * 2f
+        );
     }
 }
