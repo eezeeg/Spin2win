@@ -10,10 +10,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private GameObject panelMain;
     [SerializeField] private GameObject panelSelect;
     [SerializeField] private List<GameObject> levelList;
+    [SerializeField] private GameObject CameraToHide;
     public void PlayGame()
     {
         panelMain.SetActive(false);
         panelSelect.SetActive(true);
+        CameraToHide.SetActive(false);
     }
     public void QuitGame()
     {
@@ -27,6 +29,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         panelMain.SetActive(true);
         panelSelect.SetActive(false);
+        CameraToHide.SetActive(true);
     }
 
     private void Start()
