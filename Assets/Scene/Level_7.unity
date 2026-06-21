@@ -941,7 +941,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1096483285969583516, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
       propertyPath: levelId
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1096483285969583516, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
       propertyPath: winCanvas
@@ -1160,8 +1160,8 @@ Transform:
   m_GameObject: {fileID: 2108991702}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6438, y: 14.648, z: 1.6598}
-  m_LocalScale: {x: 4.9406686, y: 16.355446, z: 0.8291875}
+  m_LocalPosition: {x: -0.4991, y: 14.648, z: 1.6598}
+  m_LocalScale: {x: 1.7244815, y: 16.355446, z: 0.8291875}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 346145973}
