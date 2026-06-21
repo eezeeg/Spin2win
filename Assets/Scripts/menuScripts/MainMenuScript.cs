@@ -9,10 +9,12 @@ using UnityEngine.UI;
 public class NewMonoBehaviourScript : MonoBehaviour
 {
     public static bool isLevelSelect;
+    public static int selectedPage = 0;
+    [Header("Level select pages")]
+    [SerializeField] private List<GameObject> levelPageList;
 
     [Header("Panels")]
     [SerializeField] private GameObject panelMain;
-    [SerializeField] private GameObject panelSelect;
     [Header("buttons")]
     [SerializeField] private List<GameObject> levelList;
     [Header("camera")]
@@ -28,10 +30,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
+    public void pageUp(bool isNext)
+    {
+        levelPageList[selectedPage].SetActive(false);
+        selectedPage += isNext ? 1 : -1;
+        levelPageList[selectedPage].SetActive(true);
+
+    }
     public void PlayGame()
     {
         panelMain.SetActive(false);
-        panelSelect.SetActive(true);
+        levelPageList[selectedPage].SetActive(true);
+        //panelSelect.SetActive(true);
         CameraToHide.SetActive(false);
         isLevelSelect = true;
     }
@@ -53,7 +63,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public void ReturnMain()
     {
         panelMain.SetActive(true);
-        panelSelect.SetActive(false);
+        levelPageList[selectedPage].SetActive(false);
+        //panelSelect.SetActive(false);
         CameraToHide.SetActive(true);
         isLevelSelect = false;
     }
