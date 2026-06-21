@@ -64,7 +64,11 @@ public class BasicMovement : MonoBehaviour
 
         return -Camera.main.transform.up.normalized;
     }
-
+    public void ResetRotation()
+    {
+        targetRotation = 0f;
+        mazeToRotate.rotation = Quaternion.identity;
+    }
     private Vector3 GetJumpDirection()
     {
         return -GetGravityDirection();

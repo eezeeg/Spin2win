@@ -711,6 +711,37 @@ Transform:
   - {fileID: 235837378}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!1 &406360024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 406360025}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &406360025
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406360024}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.07, y: -1.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &688597866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1821,6 +1852,14 @@ PrefabInstance:
       propertyPath: winScript
       value: 
       objectReference: {fileID: 1299910257}
+    - target: {fileID: 1096483285969583516, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
+      propertyPath: deathDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096483285969583516, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
+      propertyPath: restartLevelOnDeath
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2829527161852353166, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
       propertyPath: m_Name
       value: Player Sphere
@@ -1831,11 +1870,11 @@ PrefabInstance:
       objectReference: {fileID: 1121709305}
     - target: {fileID: 5253886938895118244, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.9
+      value: -3.96
       objectReference: {fileID: 0}
     - target: {fileID: 5253886938895118244, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.81
+      value: -1.46
       objectReference: {fileID: 0}
     - target: {fileID: 5253886938895118244, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2463,3 +2502,4 @@ SceneRoots:
   - {fileID: 688597866}
   - {fileID: 1163344360}
   - {fileID: 1709947192}
+  - {fileID: 406360025}
