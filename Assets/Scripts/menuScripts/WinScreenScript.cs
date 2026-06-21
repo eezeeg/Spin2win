@@ -10,7 +10,7 @@ public class WinScreenScript : MonoBehaviour
     [SerializeField] TMP_Text BestBox;
     public void ReturnLevelSelect()
     {
-        SceneManager.LoadScene("MainMenu");
+        TransitionManager.Instance.LoadSceneWithFade("MainMenu");
     }
 
     public void UpdateBoxes(float completion, float best)

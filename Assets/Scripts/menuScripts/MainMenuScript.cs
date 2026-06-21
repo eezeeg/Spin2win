@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using TMPro;
@@ -9,10 +10,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
 {
     public static bool isLevelSelect;
 
+    [Header("Panels")]
     [SerializeField] private GameObject panelMain;
     [SerializeField] private GameObject panelSelect;
+    [Header("buttons")]
     [SerializeField] private List<GameObject> levelList;
+    [Header("camera")]
     [SerializeField] private GameObject CameraToHide;
+
+
 
     private void Awake()
     {
@@ -35,7 +41,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
     public void LoadLevel(int levelId)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Level_" + levelId);
+        string level = "Level_" + levelId;
+        StartCoroutine(LoadLevel(level));
+    }
+
+    IEnumerator LoadLevel(string levelName)
+    {
+        TransitionManager.Instance.LoadSceneWithFade(levelName);
+        yield break;
     }
     public void ReturnMain()
     {

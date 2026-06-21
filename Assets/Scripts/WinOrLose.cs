@@ -86,25 +86,4 @@ public class WinOrLose : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void LoadNextLevel()
-    {
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
-        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(nextSceneIndex);
-        }
-        else
-        {
-            Debug.Log("No next level found.");
-        }
-    }
-
-
-
-
-    public void ReturnLevelSelect()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
 }
