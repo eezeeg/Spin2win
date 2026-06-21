@@ -7,15 +7,27 @@ using UnityEngine.UI;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
+    public static bool isLevelSelect;
+
     [SerializeField] private GameObject panelMain;
     [SerializeField] private GameObject panelSelect;
     [SerializeField] private List<GameObject> levelList;
     [SerializeField] private GameObject CameraToHide;
+
+    private void Awake()
+    {
+        if (isLevelSelect)
+        {
+            PlayGame();
+        }
+    }
+
     public void PlayGame()
     {
         panelMain.SetActive(false);
         panelSelect.SetActive(true);
         CameraToHide.SetActive(false);
+        isLevelSelect = true;
     }
     public void QuitGame()
     {
@@ -30,6 +42,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         panelMain.SetActive(true);
         panelSelect.SetActive(false);
         CameraToHide.SetActive(true);
+        isLevelSelect = false;
     }
 
     private void Start()
