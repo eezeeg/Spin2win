@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +16,10 @@ public class WinOrLose : MonoBehaviour
 
     [Header("Completion timer")]
     [SerializeField] private float timer;
+
+    [Header("Star Times")]
+    [SerializeField] private float threeStarTime = 30f;
+    [SerializeField] private float twoStarTime = 60f;
 
     [Header("Settings")]
     [SerializeField] private bool loadNextLevelOnWin = true;
@@ -43,6 +46,11 @@ public class WinOrLose : MonoBehaviour
         }
 
         startTime = Time.time;
+
+        if (winCanvas != null)
+        {
+            winCanvas.gameObject.SetActive(false);
+        }
 
         if (spawnPoint == null && player != null)
         {
@@ -82,18 +90,41 @@ public class WinOrLose : MonoBehaviour
 
         timer = Time.time - startTime;
 
+        int starsEarned = CalculateStars(timer);
+
         Debug.Log("You Win!");
-        Debug.Log("completion time: " + timer.ToString("00.00"));
+        Debug.Log("Completion time: " + timer.ToString("00.00"));
+        Debug.Log("Stars earned: " + starsEarned);
 
-        if (loadNextLevelOnWin)
+        LevelsBeatSave.SaveLevelComplete(levelId, timer, starsEarned);
+
+        float best = LevelsBeatSave.GetBestTime(levelId);
+        int bestStars = LevelsBeatSave.GetStars(levelId);
+
+        if (winScript != null)
         {
-            LevelsBeatSave.SaveLevelComplete(levelId, timer);
+            winScript.UpdateBoxes(timer, best, starsEarned, bestStars);
+        }
 
-            float best = LevelsBeatSave.GetBestTime(levelId);
-
-            winScript.UpdateBoxes(timer, best);
+        if (winCanvas != null)
+        {
             winCanvas.gameObject.SetActive(true);
         }
+    }
+
+    private int CalculateStars(float completionTime)
+    {
+        if (completionTime <= threeStarTime)
+        {
+            return 3;
+        }
+
+        if (completionTime <= twoStarTime)
+        {
+            return 2;
+        }
+
+        return 1;
     }
 
     private void Lose()

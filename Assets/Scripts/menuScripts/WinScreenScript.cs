@@ -1,24 +1,60 @@
-using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WinScreenScript : MonoBehaviour
 {
-    [Header("textBoxes")]
-    [SerializeField] TMP_Text CompletionBox;
-    [SerializeField] TMP_Text BestBox;
+    [Header("Text Boxes")]
+    [SerializeField] private TMP_Text CompletionBox;
+    [SerializeField] private TMP_Text BestBox;
+
+    [Header("Current Stars")]
+    [SerializeField] private Image[] stars;
+
+    [Header("Best Stars Optional")]
+    [SerializeField] private Image[] bestStars;
+
+    [Header("Star Sprites")]
+    [SerializeField] private Sprite filledStar;
+    [SerializeField] private Sprite emptyStar;
+
     public void ReturnLevelSelect()
     {
         TransitionManager.Instance.LoadSceneWithFade("MainMenu");
     }
 
-    public void UpdateBoxes(float completion, float best)
+    public void UpdateBoxes(float completion, float best, int starsEarned, int bestStarsEarned)
     {
-        CompletionBox.text = FormatTime(completion);
-        BestBox.text = FormatTime(best);
+        if (CompletionBox != null)
+        {
+            CompletionBox.text = FormatTime(completion);
+        }
+
+        if (BestBox != null)
+        {
+            BestBox.text = FormatTime(best);
+        }
+
+        SetStars(stars, starsEarned);
+        SetStars(bestStars, bestStarsEarned);
     }
-    //helper for timer format
+
+    private void SetStars(Image[] starImages, int starCount)
+    {
+        if (starImages == null)
+            return;
+
+        starCount = Mathf.Clamp(starCount, 0, 3);
+
+        for (int i = 0; i < starImages.Length; i++)
+        {
+            if (starImages[i] == null)
+                continue;
+
+            starImages[i].sprite = i < starCount ? filledStar : emptyStar;
+        }
+    }
+
     private string FormatTime(float time)
     {
         int minutes = Mathf.FloorToInt(time / 60f);

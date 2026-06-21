@@ -1150,6 +1150,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1538658688}
     - target: {fileID: 1096483285969583516, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
+      propertyPath: twoStarTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096483285969583516, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
+      propertyPath: threeStarTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096483285969583516, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
       propertyPath: restartLevelOnDeath
       value: 0
       objectReference: {fileID: 0}
