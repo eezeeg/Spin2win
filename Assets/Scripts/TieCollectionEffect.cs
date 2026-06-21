@@ -11,6 +11,8 @@ public class TieCollectionEffect : MonoBehaviour
             if (sf != null)
             {
                 sf.SetActive(true);
+                GetComponent<MeshRenderer>().enabled = false;
+
             }
         }
     }
