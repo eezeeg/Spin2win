@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 1096483285969583516}
   m_Layer: 0
   m_Name: Player Sphere
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -368,7 +368,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d133ef42c01c04386b793cb194cad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WinOrLose
+  levelId: 1
   winCanvas: {fileID: 3083847785777394218, guid: 7a5d16fcd343df84b81aab248d4062e5, type: 3}
+  winScript: {fileID: 0}
+  timer: 0
   loadNextLevelOnWin: 1
   restartLevelOnDeath: 1
   winDelay: 0.5
