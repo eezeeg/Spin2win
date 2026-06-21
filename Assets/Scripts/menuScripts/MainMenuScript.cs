@@ -10,6 +10,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
 {
     public static bool isLevelSelect;
     public static int selectedPage = 0;
+
+    [Header("Second Camera")]
+    [SerializeField] private Camera SecondCam;
+    [SerializeField] private float camMoveDur = 1f;
+
+    private Coroutine viewportCoroutine;
+
     [Header("Level select pages")]
     [SerializeField] private List<GameObject> levelPageList;
 
@@ -44,6 +51,38 @@ public class NewMonoBehaviourScript : MonoBehaviour
         //panelSelect.SetActive(true);
         CameraToHide.SetActive(false);
         isLevelSelect = true;
+    }
+
+    public void GoAccesories()
+    {
+        if(viewportCoroutine != null)
+            StopCoroutine(viewportCoroutine);
+
+        viewportCoroutine = StartCoroutine(LerpCameraViewport(SecondCam, 0f));
+    }
+
+    IEnumerator LerpCameraViewport(Camera cam, float targetx)
+    {
+        Rect startRect = cam.rect;
+        Rect targetRect = cam.rect;
+        targetRect.x = targetx;
+        float elapsed = 0f;
+
+        while (elapsed < camMoveDur)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / camMoveDur;
+            t = Mathf.SmoothStep(0f, 1f, t);
+
+            Rect newRect = cam.rect;
+            newRect.x = Mathf.Lerp(startRect.x, targetRect.x, t);
+            cam.rect = newRect;
+
+            yield return null;
+        }
+
+        cam.rect = targetRect;
+        viewportCoroutine = null;
     }
     public void QuitGame()
     {
