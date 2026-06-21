@@ -404,7 +404,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 7, y: 7, z: 7, w: 7}
       customData: 
       outline: []
@@ -413,6 +413,28 @@ TextureImporter:
       bones: []
       spriteID: 4dc6909164cf1a445bf248884bba566c
       internalID: -1586309801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite sheet for Basic Pack_1
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 38
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b28073b4d84021b40ac2f540e0f8cfab
+      internalID: 834115932
       vertices: []
       indices: 
       edges: []
@@ -442,6 +464,7 @@ TextureImporter:
       Setting off: -1750848120
       Setting on: 705081517
       Sprite sheet for Basic Pack_0: 63663523
+      Sprite sheet for Basic Pack_1: 834115932
       Star_Empty: 822373676
       Star_Full: 1079524732
       Star_Half: -1709979924
