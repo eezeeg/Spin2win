@@ -22,12 +22,32 @@ public class BubbleDoor : MonoBehaviour
     [SerializeField] private float sineOffset = 0f;
 
     private float currentVelocityY;
+    private float sineStartTime;
+
+    private Vector3 startLocalPosition;
+    private Quaternion startLocalRotation;
+    private bool startStateSaved;
+
+    private void Awake()
+    {
+        if (doorVisual == null)
+        {
+            doorVisual = transform;
+        }
+
+        SaveStartState();
+    }
 
     private void Start()
     {
         if (doorVisual == null)
         {
             doorVisual = transform;
+        }
+
+        if (!startStateSaved)
+        {
+            SaveStartState();
         }
     }
 
@@ -36,24 +56,19 @@ public class BubbleDoor : MonoBehaviour
         if (gravityReference == null || doorVisual == null)
             return;
 
-        // Sine wave mode
         if (useSineWave)
         {
             Vector3 localPosition = doorVisual.localPosition;
 
-            float t = (Mathf.Sin(Time.time * sineSpeed + sineOffset) + 1f) * 0.5f;
+            float elapsedTime = Time.time - sineStartTime;
+            float t = (Mathf.Sin(elapsedTime * sineSpeed + sineOffset) + 1f) * 0.5f;
 
-            localPosition.y = Mathf.Lerp(
-                minLocalY,
-                maxLocalY,
-                t
-            );
+            localPosition.y = Mathf.Lerp(minLocalY, maxLocalY, t);
 
             doorVisual.localPosition = localPosition;
             return;
         }
 
-        // Bubble gravity mode
         Vector3 worldGravityDirection = -gravityReference.up.normalized;
 
         Vector3 railWorldDirection = doorVisual.parent != null
@@ -69,17 +84,9 @@ public class BubbleDoor : MonoBehaviour
 
         currentVelocityY += gravityOnRail * gravityAcceleration * Time.deltaTime;
 
-        currentVelocityY = Mathf.Clamp(
-            currentVelocityY,
-            -maxMoveSpeed,
-            maxMoveSpeed
-        );
+        currentVelocityY = Mathf.Clamp(currentVelocityY, -maxMoveSpeed, maxMoveSpeed);
 
-        currentVelocityY = Mathf.Lerp(
-            currentVelocityY,
-            0f,
-            damping * Time.deltaTime
-        );
+        currentVelocityY = Mathf.Lerp(currentVelocityY, 0f, damping * Time.deltaTime);
 
         Vector3 localPositionGravity = doorVisual.localPosition;
         localPositionGravity.y += currentVelocityY * Time.deltaTime;
@@ -96,6 +103,31 @@ public class BubbleDoor : MonoBehaviour
         }
 
         doorVisual.localPosition = localPositionGravity;
+    }
+
+    public void ResetDoor()
+    {
+        if (doorVisual == null)
+        {
+            doorVisual = transform;
+        }
+
+        currentVelocityY = 0f;
+        sineStartTime = Time.time;
+
+        doorVisual.localPosition = startLocalPosition;
+        doorVisual.localRotation = startLocalRotation;
+    }
+
+    private void SaveStartState()
+    {
+        if (doorVisual == null)
+            return;
+
+        startLocalPosition = doorVisual.localPosition;
+        startLocalRotation = doorVisual.localRotation;
+        sineStartTime = Time.time;
+        startStateSaved = true;
     }
 
     private void OnDrawGizmosSelected()

@@ -8,6 +8,8 @@ TagManager:
   - Goal
   - GameMusic
   - AudioSourceButtons
+  - Undefined
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX

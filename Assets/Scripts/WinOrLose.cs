@@ -32,6 +32,10 @@ public class WinOrLose : MonoBehaviour
     [Header("Movement Reset")]
     [SerializeField] private BasicMovement basicMovement;
 
+    [Header("Bubble Door Reset")]
+    [SerializeField] private bool resetBubbleDoorsOnDeath = true;
+    [SerializeField] private BubbleDoor[] bubbleDoors;
+
     private bool gameEnded;
     private float startTime;
 
@@ -43,6 +47,11 @@ public class WinOrLose : MonoBehaviour
         {
             player = playerObject.transform;
             basicMovement = playerObject.GetComponent<BasicMovement>();
+        }
+
+        if (resetBubbleDoorsOnDeath)
+        {
+            FindBubbleDoors();
         }
 
         startTime = Time.time;
@@ -164,7 +173,33 @@ public class WinOrLose : MonoBehaviour
             basicMovement.ResetRotation();
         }
 
+        ResetBubbleDoors();
+
         gameEnded = false;
+    }
+
+    private void ResetBubbleDoors()
+    {
+        if (!resetBubbleDoorsOnDeath)
+            return;
+
+        if (bubbleDoors == null || bubbleDoors.Length == 0)
+        {
+            FindBubbleDoors();
+        }
+
+        for (int i = 0; i < bubbleDoors.Length; i++)
+        {
+            if (bubbleDoors[i] != null)
+            {
+                bubbleDoors[i].ResetDoor();
+            }
+        }
+    }
+
+    private void FindBubbleDoors()
+    {
+        bubbleDoors = FindObjectsOfType<BubbleDoor>(true);
     }
 
     private void RestartLevel()
