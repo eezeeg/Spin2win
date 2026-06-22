@@ -953,6 +953,22 @@ PrefabInstance:
       propertyPath: m_Interpolate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9109913070438765307, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
+      propertyPath: rollingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3a43e9c00e5e83249ad479b79c09859a, type: 3}
+    - target: {fileID: 9109913070438765307, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
+      propertyPath: hitAudioSource
+      value: 
+      objectReference: {fileID: 2026308466}
+    - target: {fileID: 9109913070438765307, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
+      propertyPath: maxRollingVolume
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109913070438765307, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
+      propertyPath: rollingAudioSource
+      value: 
+      objectReference: {fileID: 1452889396}
     m_RemovedComponents:
     - {fileID: 1096483285969583516, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
     m_RemovedGameObjects: []
@@ -7008,6 +7024,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 22349722043771792, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
   m_PrefabInstance: {fileID: 749826603}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1452889396 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1523496098650931654, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
+  m_PrefabInstance: {fileID: 157180136}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1496903652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8762,6 +8783,11 @@ GameObject:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5345892456697080920, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
   m_PrefabInstance: {fileID: 378657809}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2026308466 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3746217956119903042, guid: f5832b60c9f8fec4087a965ea1a19b49, type: 3}
+  m_PrefabInstance: {fileID: 157180136}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2045947430
 GameObject:
