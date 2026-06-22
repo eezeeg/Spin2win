@@ -13,12 +13,12 @@ public class MarbleSoundController : MonoBehaviour
 
     [Header("Rolling Settings")]
     [SerializeField] private float minSpeedToRoll = 0.05f;
-    [SerializeField] private float speedForMaxVolume = 4f;
-    [SerializeField] private float maxRollingVolume = 1f;
-    [SerializeField] private float rollingVolumeMultiplier = 2f;
-    [SerializeField] private float rollingFadeSpeed = 10f;
-    [SerializeField] private float minRollingPitch = 0.85f;
-    [SerializeField] private float maxRollingPitch = 1.25f;
+    [SerializeField] private float rollingVolume = 1f;
+    [SerializeField] private float rollingVolumeMultiplier = 1f;
+    [SerializeField] private float rollingFadeSpeed = 20f;
+    [SerializeField] private float minRollingPitch = 0.95f;
+    [SerializeField] private float maxRollingPitch = 1.1f;
+    [SerializeField] private float pitchSpeedNeeded = 8f;
 
     [Header("Hit Settings")]
     [SerializeField] private float minLandingImpact = 2.5f;
@@ -112,11 +112,6 @@ public class MarbleSoundController : MonoBehaviour
         {
             rollingAudioSource.Play();
         }
-
-        if (showDebugLogs)
-        {
-            Debug.Log("Rolling loop started.");
-        }
     }
 
     private void UpdateRollingSound()
@@ -133,17 +128,9 @@ public class MarbleSoundController : MonoBehaviour
 
         bool shouldMakeRollingSound = isTouchingGround && speed > minSpeedToRoll;
 
-        float targetVolume = 0f;
-
-        if (shouldMakeRollingSound)
-        {
-            float speedPercent = Mathf.InverseLerp(minSpeedToRoll, speedForMaxVolume, speed);
-
-            targetVolume = maxRollingVolume * speedPercent * rollingVolumeMultiplier;
-            targetVolume = Mathf.Clamp(targetVolume, 0f, 3f);
-
-            rollingAudioSource.pitch = Mathf.Lerp(minRollingPitch, maxRollingPitch, speedPercent);
-        }
+        float targetVolume = shouldMakeRollingSound
+            ? rollingVolume * rollingVolumeMultiplier
+            : 0f;
 
         currentRollingVolume = Mathf.MoveTowards(
             currentRollingVolume,
@@ -153,9 +140,12 @@ public class MarbleSoundController : MonoBehaviour
 
         rollingAudioSource.volume = currentRollingVolume;
 
+        float pitchPercent = Mathf.InverseLerp(minSpeedToRoll, pitchSpeedNeeded, speed);
+        rollingAudioSource.pitch = Mathf.Lerp(minRollingPitch, maxRollingPitch, pitchPercent);
+
         if (showDebugLogs)
         {
-            Debug.Log("Rolling | Grounded: " + isTouchingGround + " | Speed: " + speed + " | Volume: " + rollingAudioSource.volume);
+            Debug.Log("Rolling | Grounded: " + isTouchingGround + " | Speed: " + speed + " | TargetVolume: " + targetVolume + " | Volume: " + rollingAudioSource.volume);
         }
     }
 
