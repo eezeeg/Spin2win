@@ -42,7 +42,7 @@ public class WinOrLose : MonoBehaviour
     private void Start()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-
+        PauseMenu.PauseLocked = false;
         if (playerObject != null)
         {
             player = playerObject.transform;
@@ -110,6 +110,8 @@ public class WinOrLose : MonoBehaviour
         float best = LevelsBeatSave.GetBestTime(levelId);
         int bestStars = LevelsBeatSave.GetStars(levelId);
 
+        PauseMenu.PauseLocked = true;
+
         if (winScript != null)
         {
             winScript.UpdateBoxes(timer, best, starsEarned, bestStars);
@@ -174,7 +176,7 @@ public class WinOrLose : MonoBehaviour
         }
 
         ResetBubbleDoors();
-
+        PauseMenu.PauseLocked = false;
         gameEnded = false;
     }
 
@@ -205,5 +207,6 @@ public class WinOrLose : MonoBehaviour
     private void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        PauseMenu.PauseLocked = false;
     }
 }

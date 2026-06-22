@@ -46,6 +46,11 @@ public class BasicMovement : MonoBehaviour
 
     private void Update()
     {
+        if (PauseMenu.IsPaused)
+        {
+            return;
+        }
+
         CheckGrounded();
         HandleJump();
         HandleRotation();
