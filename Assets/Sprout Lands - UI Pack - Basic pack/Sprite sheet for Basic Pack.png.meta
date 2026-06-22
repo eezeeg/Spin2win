@@ -418,10 +418,32 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite sheet for Basic Pack_1
+      name: ArrowButton_On
       rect:
         serializedVersion: 2
         x: 535
+        y: 38
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b28073b4d84021b40ac2f540e0f8cfab
+      internalID: 834115932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrowButton_Off
+      rect:
+        serializedVersion: 2
+        x: 567
         y: 38
         width: 17
         height: 21
@@ -433,8 +455,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b28073b4d84021b40ac2f540e0f8cfab
-      internalID: 834115932
+      spriteID: 6ce95e0ad5e03854f8ffd83e17548c05
+      internalID: -816005207
       vertices: []
       indices: 
       edges: []
@@ -453,6 +475,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      ArrowButton_Off: -816005207
+      ArrowButton_On: 834115932
       Difficulty_1: -7538068
       Difficulty_2: -1692285356
       Difficulty_3: -500447504
@@ -464,7 +488,6 @@ TextureImporter:
       Setting off: -1750848120
       Setting on: 705081517
       Sprite sheet for Basic Pack_0: 63663523
-      Sprite sheet for Basic Pack_1: 834115932
       Star_Empty: 822373676
       Star_Full: 1079524732
       Star_Half: -1709979924
