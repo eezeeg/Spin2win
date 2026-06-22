@@ -531,10 +531,10 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: d7a4c4d93ff54aa4081f54655e06e38e, type: 3}
   rollingAudioSource: {fileID: 1523496098650931654}
   hitAudioSource: {fileID: 3746217956119903042}
-  minSpeedToRoll: 0.1
-  rollingVolume: 1
-  rollingVolumeMultiplier: 753
-  rollingFadeSpeed: 20
+  minSpeedToRoll: 0.64
+  rollingVolume: 0.3
+  rollingVolumeMultiplier: 200
+  rollingFadeSpeed: 8
   minRollingPitch: 0.85
   maxRollingPitch: 1.25
   pitchSpeedNeeded: 8
