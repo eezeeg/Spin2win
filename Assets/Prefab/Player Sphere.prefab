@@ -513,6 +513,8 @@ MonoBehaviour:
   winDelay: 0.5
   deathDelay: 0.5
   basicMovement: {fileID: 0}
+  resetBubbleDoorsOnDeath: 1
+  bubbleDoors: []
 --- !u!114 &9109913070438765307
 MonoBehaviour:
   m_ObjectHideFlags: 0
