@@ -10,6 +10,10 @@ public class ButtonTextPressEffect : MonoBehaviour, IPointerDownHandler, IPointe
     [Header("Movement")]
     [SerializeField] private float moveDownAmount = 5f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip clickSound;
+
     private Vector3 originalLocalPosition;
     private bool isPressed;
 
@@ -18,6 +22,12 @@ public class ButtonTextPressEffect : MonoBehaviour, IPointerDownHandler, IPointe
         if (textToMove == null)
         {
             textToMove = GetComponentInChildren<TMP_Text>();
+        }
+
+        if (audioSource == null)
+        {
+            GameObject GO = GameObject.FindGameObjectWithTag("AudioSourceButtons");
+            audioSource = GO.GetComponent<AudioSource>();
         }
 
         if (textToMove != null)
@@ -29,6 +39,11 @@ public class ButtonTextPressEffect : MonoBehaviour, IPointerDownHandler, IPointe
     public void OnPointerDown(PointerEventData eventData)
     {
         MoveTextDown();
+
+        if (audioSource != null && clickSound != null)
+        {
+            audioSource.PlayOneShot(clickSound);
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -68,6 +83,11 @@ public class ButtonTextPressEffect : MonoBehaviour, IPointerDownHandler, IPointe
 
     private void OnDisable()
     {
-        MoveTextBack();
+        if (textToMove != null)
+        {
+            textToMove.rectTransform.localPosition = originalLocalPosition;
+        }
+
+        isPressed = false;
     }
 }

@@ -119,6 +119,148 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &35991419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 35991421}
+  - component: {fileID: 35991420}
+  - component: {fileID: 35991422}
+  m_Layer: 0
+  m_Name: AudioSource background music
+  m_TagString: GameMusic
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &35991420
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35991419}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 2e06b4f88bc471f46bfef810b6abd37f, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &35991421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35991419}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.10727, y: 26.21547, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &35991422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35991419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7459e6279b82144183e07afa93543c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicPersistence
 --- !u!1001 &105392173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -231,6 +373,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -630,6 +776,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -957,6 +1107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonTextPressEffect
   textToMove: {fileID: 306633744}
   moveDownAmount: 1.4
+  audioSource: {fileID: 593386503}
+  clickSound: {fileID: 8300000, guid: 09a045fdfc1799540a4dd75b80fd6ed6, type: 3}
 --- !u!1 &194775169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,6 +1583,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1780,6 +1936,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1990,6 +2150,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2187,6 +2351,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2312,6 +2480,7 @@ GameObject:
   - component: {fileID: 449418923}
   - component: {fileID: 449418922}
   - component: {fileID: 449418921}
+  - component: {fileID: 449418924}
   m_Layer: 5
   m_Name: BtnNext
   m_TagString: Untagged
@@ -2369,7 +2538,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: -816005207, guid: 9e7c178a2dd063f40b2d00461de986da, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -2433,6 +2602,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449418919}
   m_CullTransparentMesh: 1
+--- !u!114 &449418924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449418919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83833d4548a90f419ac96117399169c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonTextPressEffect
+  textToMove: {fileID: 0}
+  moveDownAmount: 5
+  audioSource: {fileID: 593386503}
+  clickSound: {fileID: 8300000, guid: 09a045fdfc1799540a4dd75b80fd6ed6, type: 3}
 --- !u!1 &474911297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2777,6 +2962,135 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579728680}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &593386502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 593386504}
+  - component: {fileID: 593386503}
+  m_Layer: 0
+  m_Name: AudioSource
+  m_TagString: AudioSourceButtons
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &593386503
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593386502}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &593386504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593386502}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.10727, y: 26.21547, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &641827331
 GameObject:
   m_ObjectHideFlags: 0
@@ -3420,6 +3734,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonTextPressEffect
   textToMove: {fileID: 2084121616}
   moveDownAmount: 1.4
+  audioSource: {fileID: 593386503}
+  clickSound: {fileID: 8300000, guid: 09a045fdfc1799540a4dd75b80fd6ed6, type: 3}
 --- !u!1001 &749826603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3528,6 +3844,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -4027,6 +4347,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonTextPressEffect
   textToMove: {fileID: 332207867}
   moveDownAmount: 1.4
+  audioSource: {fileID: 593386503}
+  clickSound: {fileID: 8300000, guid: 09a045fdfc1799540a4dd75b80fd6ed6, type: 3}
 --- !u!1 &884426478
 GameObject:
   m_ObjectHideFlags: 0
@@ -4175,6 +4497,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonTextPressEffect
   textToMove: {fileID: 1557105322}
   moveDownAmount: 1.4
+  audioSource: {fileID: 593386503}
+  clickSound: {fileID: 8300000, guid: 09a045fdfc1799540a4dd75b80fd6ed6, type: 3}
 --- !u!1 &907738131 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5345892456697080920, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
@@ -4294,6 +4618,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -4505,6 +4833,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -4706,6 +5038,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -5011,6 +5347,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -5358,6 +5698,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -5719,6 +6063,7 @@ GameObject:
   - component: {fileID: 1256665335}
   - component: {fileID: 1256665334}
   - component: {fileID: 1256665333}
+  - component: {fileID: 1256665336}
   m_Layer: 5
   m_Name: BtnPrev
   m_TagString: Untagged
@@ -5776,7 +6121,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: -816005207, guid: 9e7c178a2dd063f40b2d00461de986da, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -5840,6 +6185,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256665331}
   m_CullTransparentMesh: 1
+--- !u!114 &1256665336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256665331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83833d4548a90f419ac96117399169c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonTextPressEffect
+  textToMove: {fileID: 0}
+  moveDownAmount: 5
+  audioSource: {fileID: 593386503}
+  clickSound: {fileID: 8300000, guid: 09a045fdfc1799540a4dd75b80fd6ed6, type: 3}
 --- !u!1 &1293811769
 GameObject:
   m_ObjectHideFlags: 0
@@ -6057,6 +6418,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -6494,6 +6859,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonTextPressEffect
   textToMove: {fileID: 708843401}
   moveDownAmount: 1.4
+  audioSource: {fileID: 593386503}
+  clickSound: {fileID: 8300000, guid: 09a045fdfc1799540a4dd75b80fd6ed6, type: 3}
 --- !u!1 &1409372095
 GameObject:
   m_ObjectHideFlags: 0
@@ -6745,6 +7112,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -7072,6 +7443,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -7584,6 +7959,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -7781,6 +8160,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -8027,6 +8410,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ButtonTextPressEffect
   textToMove: {fileID: 1409372097}
   moveDownAmount: 1.4
+  audioSource: {fileID: 593386503}
+  clickSound: {fileID: 8300000, guid: 09a045fdfc1799540a4dd75b80fd6ed6, type: 3}
 --- !u!1 &1809520694
 GameObject:
   m_ObjectHideFlags: 0
@@ -8266,6 +8651,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -8606,6 +8995,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -9203,6 +9596,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5107291138450192069, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 593386503}
     - target: {fileID: 5109628090478559588, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -9307,3 +9704,5 @@ SceneRoots:
   - {fileID: 157180136}
   - {fileID: 146289694}
   - {fileID: 1506000217}
+  - {fileID: 593386504}
+  - {fileID: 35991421}

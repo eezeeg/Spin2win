@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Hazard
   - Goal
+  - GameMusic
+  - AudioSourceButtons
   layers:
   - Default
   - TransparentFX
