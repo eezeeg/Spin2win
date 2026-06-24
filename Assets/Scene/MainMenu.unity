@@ -3070,7 +3070,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 834115932, guid: 9e7c178a2dd063f40b2d00461de986da, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -7539,7 +7539,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 834115932, guid: 9e7c178a2dd063f40b2d00461de986da, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -11731,6 +11731,10 @@ PrefabInstance:
     - target: {fileID: 7589546527748216203, guid: 31d85985d275ade4badba6491bf62c6e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630944531006827519, guid: 31d85985d275ade4badba6491bf62c6e, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8397086291978650091, guid: 31d85985d275ade4badba6491bf62c6e, type: 3}
       propertyPath: m_AnchorMax.y
