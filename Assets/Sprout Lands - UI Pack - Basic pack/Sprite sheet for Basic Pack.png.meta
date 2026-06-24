@@ -448,7 +448,7 @@ TextureImporter:
         width: 17
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -457,6 +457,50 @@ TextureImporter:
       bones: []
       spriteID: 6ce95e0ad5e03854f8ffd83e17548c05
       internalID: -816005207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spider
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 70
+        width: 38
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1baed22be3b21f346aa091b64c53ee2f
+      internalID: 1254809865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slider head
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 68
+        width: 18
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc21ec06cf55d0846b5760a736fcc574
+      internalID: -1110370819
       vertices: []
       indices: 
       edges: []
@@ -487,6 +531,8 @@ TextureImporter:
       Frame 2: -1586309801
       Setting off: -1750848120
       Setting on: 705081517
+      Slider head: -1110370819
+      Spider: 1254809865
       Sprite sheet for Basic Pack_0: 63663523
       Star_Empty: 822373676
       Star_Full: 1079524732

@@ -33,6 +33,9 @@ public class BasicMovement : MonoBehaviour
     private float targetRotation;
     private bool isGrounded;
 
+    private Transform currentPlatform;
+    private Vector3 lastPlatformPosition;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,7 +49,7 @@ public class BasicMovement : MonoBehaviour
 
     private void Update()
     {
-        if (PauseMenu.IsPaused)
+        if (PauseMenu.IsPaused || SettingsMenu.SettingsOpen)
         {
             return;
         }
@@ -58,8 +61,28 @@ public class BasicMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (PauseMenu.IsPaused || SettingsMenu.SettingsOpen)
+        {
+            return;
+        }
+
         HandleMovement();
         ApplyCustomGravity();
+    }
+
+    private void LateUpdate()
+    {
+        if (PauseMenu.IsPaused || SettingsMenu.SettingsOpen)
+        {
+            return;
+        }
+
+        if (currentPlatform != null)
+        {
+            Vector3 platformDelta = currentPlatform.position - lastPlatformPosition;
+            transform.position += platformDelta;
+            lastPlatformPosition = currentPlatform.position;
+        }
     }
 
     private Vector3 GetGravityDirection()
@@ -69,11 +92,15 @@ public class BasicMovement : MonoBehaviour
 
         return -Camera.main.transform.up.normalized;
     }
+
     public void ResetRotation()
     {
         targetRotation = 0f;
-        mazeToRotate.rotation = Quaternion.identity;
+
+        if (mazeToRotate != null)
+            mazeToRotate.rotation = Quaternion.identity;
     }
+
     private Vector3 GetJumpDirection()
     {
         return -GetGravityDirection();
@@ -100,7 +127,13 @@ public class BasicMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        float horizontal = 0f;
+
+        if (Input.GetKey(SettingsMenu.LeftKey))
+            horizontal -= 1f;
+
+        if (Input.GetKey(SettingsMenu.RightKey))
+            horizontal += 1f;
 
         Vector3 moveDirection = GetMoveDirection();
 
@@ -127,7 +160,7 @@ public class BasicMovement : MonoBehaviour
 
     private void HandleJump()
     {
-        if (!Input.GetKeyDown(KeyCode.Space))
+        if (!Input.GetKeyDown(SettingsMenu.JumpKey))
             return;
 
         if (!isGrounded)
@@ -156,7 +189,7 @@ public class BasicMovement : MonoBehaviour
         {
             multiplier = fallMultiplier;
         }
-        else if (!Input.GetKey(KeyCode.Space))
+        else if (!Input.GetKey(SettingsMenu.JumpKey))
         {
             multiplier = lowJumpMultiplier;
         }
@@ -180,7 +213,7 @@ public class BasicMovement : MonoBehaviour
         if (mazeToRotate == null)
             return;
 
-        float scroll = Input.mouseScrollDelta.y;
+        float scroll = Input.mouseScrollDelta.y * SettingsMenu.ScrollSensitivity;
 
         if (Mathf.Abs(scroll) > 0.01f)
         {
@@ -197,6 +230,23 @@ public class BasicMovement : MonoBehaviour
             targetRot,
             Time.deltaTime * 8f
         );
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            currentPlatform = collision.transform;
+            lastPlatformPosition = currentPlatform.position;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform == currentPlatform)
+        {
+            currentPlatform = null;
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -226,38 +276,10 @@ public class BasicMovement : MonoBehaviour
             transform.position,
             transform.position + moveDirection * wallCheckDistance
         );
+
         Gizmos.DrawLine(
             transform.position,
             transform.position - moveDirection * wallCheckDistance
         );
-    }
-    private Transform currentPlatform;
-    private Vector3 lastPlatformPosition;
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("MovingPlatform"))
-        {
-            currentPlatform = collision.transform;
-            lastPlatformPosition = currentPlatform.position;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.transform == currentPlatform)
-        {
-            currentPlatform = null;
-        }
-    }
-
-    private void LateUpdate()
-    {
-        if (currentPlatform != null)
-        {
-            Vector3 platformDelta = currentPlatform.position - lastPlatformPosition;
-            transform.position += platformDelta;
-            lastPlatformPosition = currentPlatform.position;
-        }
     }
 }
