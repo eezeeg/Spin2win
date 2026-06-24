@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class NewMonoBehaviourScript : MonoBehaviour
@@ -20,23 +18,19 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private GameObject panel1;
     [SerializeField] private GameObject panel2;
     [SerializeField] private GameObject panel3;
+
     [Header("Prefabs accesoires")]
     [SerializeField] private List<Material> MatList1;
     [SerializeField] private List<Material> MatList2;
     [SerializeField] private List<GameObject> Shape1List;
 
-    [SerializeField] private float accessoriesCanvasMoveDur = 1f;
-    [SerializeField] private float accessoriesHiddenX = -1920f;
-    [SerializeField] private float accessoriesShownX = 0f;
-    private Coroutine accessoriesCanvasCoroutine;
-    [Header("button prefab")]
-    [SerializeField] private Button buttonPrefab; 
+    [Header("Button prefab")]
+    [SerializeField] private Button buttonPrefab;
 
     [Header("Second Camera")]
     [SerializeField] private Camera SecondCam;
-    [SerializeField] private float camMoveDur = 1f;
-
-    private Coroutine viewportCoroutine;
+    [SerializeField] private float accessoriesCameraViewportX = 0.3f;
+    [SerializeField] private float mainMenuCameraViewportX = 0.3f;
 
     [Header("Level select pages")]
     [SerializeField] private List<GameObject> levelPageList;
@@ -54,12 +48,20 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private Sprite filledStar;
     [SerializeField] private Sprite emptyStar;
 
+    [Header("Settings")]
+    [SerializeField] private SettingsMenu settingsMenu;
+
     private void Awake()
     {
-        Vector2 pos = accessoriesCanvas.anchoredPosition;
-        pos.x = accessoriesHiddenX;
-        accessoriesCanvas.anchoredPosition = pos;
+        if (accessoriesCanvas != null)
+        {
+            accessoriesCanvas.gameObject.SetActive(false);
+        }
+
+        SetSecondCameraViewportX(mainMenuCameraViewportX);
+
         CreateAccButtons();
+
         if (isLevelSelect)
         {
             PlayGame();
@@ -80,6 +82,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     public void PlayGame()
     {
+        settingsMenu.CloseSettings();
         panelMain.SetActive(false);
         levelPageList[selectedPage].SetActive(true);
         CameraToHide.SetActive(false);
@@ -91,6 +94,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         CreateMaterial1Buttons();
         CreateMaterial2Buttons();
         CreatShapeButton();
+
         LayoutRebuilder.ForceRebuildLayoutImmediate(panel1.GetComponent<RectTransform>());
         LayoutRebuilder.ForceRebuildLayoutImmediate(panel2.GetComponent<RectTransform>());
         LayoutRebuilder.ForceRebuildLayoutImmediate(panel3.GetComponent<RectTransform>());
@@ -99,18 +103,22 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void CreateMaterial1Buttons()
     {
         Debug.Log("Creating material buttons. Count: " + MatList1.Count);
+
         foreach (Material material in MatList1)
         {
             Debug.Log("material: " + material.name);
+
             Button newButton = Instantiate(buttonPrefab, panel1.transform);
             newButton.gameObject.SetActive(true);
             newButton.name = material.name;
 
             TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>();
+
             if (buttonText != null)
             {
                 buttonText.text = material.name;
             }
+
             Material currentMaterial = material;
 
             newButton.onClick.AddListener(() =>
@@ -133,6 +141,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             newButton.name = material.name;
 
             TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>(true);
+
             if (buttonText != null)
             {
                 buttonText.text = material.name;
@@ -160,6 +169,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             newButton.name = shape.name;
 
             TMP_Text buttonText = newButton.GetComponentInChildren<TMP_Text>(true);
+
             if (buttonText != null)
             {
                 buttonText.text = shape.name;
@@ -173,22 +183,27 @@ public class NewMonoBehaviourScript : MonoBehaviour
             });
         }
     }
+
     private void SelectMaterial(Material material)
     {
         Renderer renderer = marble.GetComponent<Renderer>();
+
         if (renderer != null)
         {
             renderer.material = material;
         }
     }
+
     private void SelectMaterial2(Material material)
     {
         Renderer renderer = tieMarble.GetComponent<Renderer>();
+
         if (renderer != null)
         {
             renderer.material = material;
         }
     }
+
     private void SelectShape(GameObject shape)
     {
         MeshFilter marbleMeshFilter = tieMarble.GetComponent<MeshFilter>();
@@ -205,102 +220,58 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         marbleMeshFilter.mesh = shapeMeshFilter.sharedMesh;
-
         tieMarble.transform.localScale = shape.transform.localScale;
     }
+
     public void showAccPanel(int panelInt)
     {
-        switch (panelInt)
-        {
-            case 1:
-                panel1.SetActive(true);
-                panel2.SetActive(false);
-                panel3.SetActive(false);
-                break;
-            case 2:
-                panel1.SetActive(false);
-                panel2.SetActive(true);
-                panel3.SetActive(false);
-                break;
-            case 3:
-                panel1.SetActive(false);
-                panel2.SetActive(false);
-                panel3.SetActive(true);
-                break;
-        }
+        //panel1.SetActive(panelInt == 1);
+        //panel2.SetActive(panelInt == 2);
+        //panel3.SetActive(panelInt == 3);
     }
+
     public void GoAccesories(bool isGoing)
     {
-        if (viewportCoroutine != null)
-        {
-            StopCoroutine(viewportCoroutine);
-        }
-
-        if (accessoriesCanvasCoroutine != null)
-        {
-            StopCoroutine(accessoriesCanvasCoroutine);
-        }
-
-
+        settingsMenu.CloseSettings();
         if (isGoing)
         {
-            viewportCoroutine = StartCoroutine(LerpCameraViewport(SecondCam, 0f)); 
-            accessoriesCanvasCoroutine = StartCoroutine(LerpCanvas(accessoriesCanvas, accessoriesShownX));
+            panelMain.SetActive(false);
+
+            if (accessoriesCanvas != null)
+            {
+                accessoriesCanvas.gameObject.SetActive(true);
+            }
+
+            showAccPanel(1);
+            SetSecondCameraViewportX(accessoriesCameraViewportX);
         }
         else
         {
-            viewportCoroutine = StartCoroutine(LerpCameraViewport(SecondCam, 0.3f)); 
-            accessoriesCanvasCoroutine = StartCoroutine(LerpCanvas(accessoriesCanvas, accessoriesHiddenX));
+            if (accessoriesCanvas != null)
+            {
+                accessoriesCanvas.gameObject.SetActive(false);
+            }
+
+            panelMain.SetActive(true);
+            SetSecondCameraViewportX(mainMenuCameraViewportX);
         }
     }
 
-    private IEnumerator LerpCameraViewport(Camera cam, float targetx)
+    private void SetSecondCameraViewportX(float x)
     {
-        Rect startRect = cam.rect;
-        Rect targetRect = cam.rect;
-        targetRect.x = targetx;
-        float elapsed = 0f;
-
-        while (elapsed < camMoveDur)
+        if (SecondCam == null)
         {
-            elapsed += Time.deltaTime;
-            float t = elapsed / camMoveDur;
-            t = Mathf.SmoothStep(0f, 1f, t);
-
-            Rect newRect = cam.rect;
-            newRect.x = Mathf.Lerp(startRect.x, targetRect.x, t);
-            cam.rect = newRect;
-
-            yield return null;
+            return;
         }
 
-        cam.rect = targetRect;
-        viewportCoroutine = null;
+        Rect rect = SecondCam.rect;
+        rect.x = x;
+        SecondCam.rect = rect;
     }
 
-    private IEnumerator LerpCanvas(RectTransform canvasRect, float targetX)
-    {
-        Vector2 startPos = canvasRect.anchoredPosition;
-        Vector2 targetPos = startPos;
-        targetPos.x = targetX;
-
-        float elapsed = 0f;
-        while (elapsed < accessoriesCanvasMoveDur)
-        {
-            elapsed += Time.deltaTime;
-
-            float time = elapsed / accessoriesCanvasMoveDur;
-            time = Mathf.SmoothStep(0f, 1f, time);
-
-            canvasRect.anchoredPosition = Vector2.Lerp(startPos, targetPos, time);
-
-            yield return null;
-        }
-        canvasRect.anchoredPosition = targetPos;
-        accessoriesCanvasCoroutine = null;
-    }
     public void QuitGame()
     {
+        settingsMenu.CloseSettings();
         Application.Quit();
     }
 
@@ -332,7 +303,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
         foreach (GameObject level in levelList)
         {
             TMP_Text timer = level.transform.Find("CompleteTime").GetComponent<TMP_Text>();
-
             Transform starsParent = level.transform.Find("LvlImage1/Stars");
 
             GameObject buttonObject = level.transform.Find("BtnLvl").gameObject;

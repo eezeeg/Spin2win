@@ -1560,6 +1560,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsMenuManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1131964313285826545, guid: 31d85985d275ade4badba6491bf62c6e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131964313285826545, guid: 31d85985d275ade4badba6491bf62c6e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2928737169005393262, guid: 31d85985d275ade4badba6491bf62c6e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
