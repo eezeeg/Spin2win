@@ -470,7 +470,7 @@ TextureImporter:
         width: 38
         height: 4
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -492,7 +492,7 @@ TextureImporter:
         width: 18
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -501,6 +501,28 @@ TextureImporter:
       bones: []
       spriteID: cc21ec06cf55d0846b5760a736fcc574
       internalID: -1110370819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comming Later
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 2
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 308ff07ab6400964a8cece032bc88068
+      internalID: -224325780
       vertices: []
       indices: 
       edges: []
@@ -521,6 +543,7 @@ TextureImporter:
     nameFileIdTable:
       ArrowButton_Off: -816005207
       ArrowButton_On: 834115932
+      Comming Later: -224325780
       Difficulty_1: -7538068
       Difficulty_2: -1692285356
       Difficulty_3: -500447504
