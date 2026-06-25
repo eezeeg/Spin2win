@@ -18,22 +18,32 @@ public class CollectionStatsUI : MonoBehaviour
 
     public void Refresh()
     {
-        int completedLevels = 0;
+        int collectedTies = 0;
         int collectedStars = 0;
 
         for (int levelId = 1; levelId <= totalLevels; levelId++)
         {
             if (LevelsBeatSave.IsLevelComplete(levelId))
             {
-                completedLevels++;
+                collectedTies++;
             }
 
             collectedStars += LevelsBeatSave.GetStars(levelId);
         }
 
+        int maxTies = totalLevels;
+
+        maxTies++;
+
+        if (LevelsBeatSave.IsMainMenuTieCollected())
+        {
+            collectedTies++;
+        }
+
+
         if (tiesText != null)
         {
-            tiesText.text = completedLevels + "/" + totalLevels;
+            tiesText.text = collectedTies + "/" + maxTies;
         }
 
         if (starsText != null)

@@ -1123,7 +1123,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1351712444930914364, guid: caafc19df8b83e84b8622a913d2e5320, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1939441802}
   m_SourcePrefab: {fileID: 100100000, guid: caafc19df8b83e84b8622a913d2e5320, type: 3}
 --- !u!1001 &156577587
 PrefabInstance:
@@ -8064,6 +8067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
   marble: {fileID: 89978851}
   tieMarble: {fileID: 1939441796}
+  tieCollectable: {fileID: 1939441796}
   accessoriesCanvas: {fileID: 481202410}
   panel1: {fileID: 1681614107}
   panel2: {fileID: 770700431}
@@ -10873,6 +10877,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1351712444930914364, guid: caafc19df8b83e84b8622a913d2e5320, type: 3}
   m_PrefabInstance: {fileID: 146289694}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1939441802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939441796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497bc711d5d5c5f46a08da052a2eb35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenuTieCollect
 --- !u!1 &1944144141 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5345892456697080920, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}

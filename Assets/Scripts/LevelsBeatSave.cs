@@ -2,7 +2,19 @@ using UnityEngine;
 
 public class LevelsBeatSave : MonoBehaviour
 {
+    private const string MainMenuTieCollectedKey = "MainMenuTieCollected";
     private const string CompletedLevelsInt = "CompletedLevels";
+
+
+    public static void SaveMainMenuTieCollected()
+    {
+        PlayerPrefs.SetInt(MainMenuTieCollectedKey, 1);
+        PlayerPrefs.Save();
+    }
+    public static bool IsMainMenuTieCollected()
+    {
+        return PlayerPrefs.GetInt(MainMenuTieCollectedKey, 0) == 1;
+    }
 
     private static string GetLevelTime(int id)
     {

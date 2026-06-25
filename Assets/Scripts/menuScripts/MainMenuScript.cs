@@ -342,6 +342,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
             levelId++;
         }
+
+        CollectionStatsUI[] statsUIs = FindObjectsOfType<CollectionStatsUI>(true);
+
+        foreach (CollectionStatsUI statsUI in statsUIs)
+        {
+            statsUI.Refresh();
+        }
     }
 
     private void SetLevelStars(Transform starsParent, int starCount)
