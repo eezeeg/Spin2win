@@ -34,6 +34,8 @@ public class BasicMovement : MonoBehaviour
     [SerializeField] private bool autoRotate = false;
     [SerializeField] private float autoRotateSpeed = 15f;
 
+    [SerializeField] private Transform oppositeRotationObject;
+
     private Rigidbody rb;
     private float targetRotation;
     private bool isGrounded;
@@ -106,9 +108,10 @@ public class BasicMovement : MonoBehaviour
         targetRotation = 0f;
 
         if (mazeToRotate != null)
-        {
             mazeToRotate.rotation = Quaternion.identity;
-        }
+
+        if (oppositeRotationObject != null)
+            oppositeRotationObject.rotation = Quaternion.identity;
     }
 
     private Vector3 GetJumpDirection()
@@ -260,6 +263,12 @@ public class BasicMovement : MonoBehaviour
             targetRot,
             Time.deltaTime * 8f
         );
+
+        // Rotate another object in the opposite direction
+        if (oppositeRotationObject != null)
+        {
+            oppositeRotationObject.rotation = mazeToRotate.rotation;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
