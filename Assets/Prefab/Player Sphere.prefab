@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 7870293278782442738}
   - component: {fileID: 1096483285969583516}
   - component: {fileID: 9109913070438765307}
+  - component: {fileID: 2641188293405957688}
   m_Layer: 0
   m_Name: Player Sphere
   m_TagString: Player
@@ -361,6 +362,23 @@ MonoBehaviour:
   maxHitVolume: 1
   hitCooldown: 0.09
   showDebugLogs: 0
+--- !u!114 &2641188293405957688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2829527161852353166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d43b1017423a7914485b680017655b8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMaterialApply
+  material1Target: {fileID: 1971284442501144813}
+  insides:
+  - {fileID: 898722763627250051}
+  - {fileID: 3006194463294030313}
+  - {fileID: 158960457610207147}
 --- !u!1 &6953074848385003810
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +586,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2d9c26f01d6a1124d8d17190233d1a64, type: 3}
   m_PrefabInstance: {fileID: 52229303626267858}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &898722763627250051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2d9c26f01d6a1124d8d17190233d1a64, type: 3}
+  m_PrefabInstance: {fileID: 52229303626267858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1078001195902935802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -645,6 +668,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ccaadd51385d6a45a347955cae093a7, type: 3}
+--- !u!1 &158960457610207147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ccaadd51385d6a45a347955cae093a7, type: 3}
+  m_PrefabInstance: {fileID: 1078001195902935802}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &684385640569160977 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5ccaadd51385d6a45a347955cae093a7, type: 3}
@@ -745,6 +773,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0b6b0c605c9fd81488781419d9fae585, type: 3}
   m_PrefabInstance: {fileID: 1700672979505372604}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1971284442501144813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b6b0c605c9fd81488781419d9fae585, type: 3}
+  m_PrefabInstance: {fileID: 1700672979505372604}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2700273281603091640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -811,7 +844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2209951d7194d7a4cb66b13426f1007c, type: 3}
       propertyPath: m_Name
-      value: Marble_sqigel
+      value: Marble_Squiggly
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2209951d7194d7a4cb66b13426f1007c, type: 3}
       propertyPath: m_IsActive
@@ -825,5 +858,10 @@ PrefabInstance:
 --- !u!4 &2518626286030773075 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2209951d7194d7a4cb66b13426f1007c, type: 3}
+  m_PrefabInstance: {fileID: 2700273281603091640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3006194463294030313 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2209951d7194d7a4cb66b13426f1007c, type: 3}
   m_PrefabInstance: {fileID: 2700273281603091640}
   m_PrefabAsset: {fileID: 0}

@@ -9,6 +9,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public static bool isLevelSelect;
     public static int selectedPage = 0;
 
+    public static Material selectedMat1;
+    public static Material selectedMat2;
+    public static int ShapeId;
+
     [Header("Testing")]
     public GameObject marble;
     public GameObject tieMarble;
@@ -160,6 +164,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         Debug.Log("Creating shape buttons. Count: " + Shape1List.Count);
 
+        int shapeId = 0;
+
         foreach (GameObject shape in Shape1List)
         {
             Debug.Log("shape: " + shape.name);
@@ -176,16 +182,21 @@ public class NewMonoBehaviourScript : MonoBehaviour
             }
 
             GameObject currentShape = shape;
+            int currentShapeId = shapeId;
 
             newButton.onClick.AddListener(() =>
             {
                 SelectShape(currentShape);
+                ShapeId = currentShapeId;
             });
+
+            shapeId++;
         }
     }
 
     private void SelectMaterial(Material material)
     {
+        selectedMat1 = material;
         Renderer renderer = marble.GetComponent<Renderer>();
 
         if (renderer != null)
@@ -196,6 +207,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void SelectMaterial2(Material material)
     {
+        selectedMat2 = material;
         Renderer renderer = tieMarble.GetComponent<Renderer>();
 
         if (renderer != null)
@@ -223,13 +235,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
         tieMarble.transform.localScale = shape.transform.localScale;
     }
 
-    public void showAccPanel(int panelInt)
-    {
-        //panel1.SetActive(panelInt == 1);
-        //panel2.SetActive(panelInt == 2);
-        //panel3.SetActive(panelInt == 3);
-    }
-
     public void GoAccesories(bool isGoing)
     {
         settingsMenu.CloseSettings();
@@ -242,7 +247,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 accessoriesCanvas.gameObject.SetActive(true);
             }
 
-            showAccPanel(1);
             SetSecondCameraViewportX(accessoriesCameraViewportX);
         }
         else
