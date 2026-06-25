@@ -15,7 +15,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     [Header("Testing")]
     public GameObject marble;
-    public GameObject tieMarble;
+    [SerializeField] private List<GameObject> tiesMarble;
+    private int tieMarbleId = 0;
 
     [Header("Accessories Canvas")]
     [SerializeField] private RectTransform accessoriesCanvas;
@@ -168,8 +169,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         foreach (GameObject shape in Shape1List)
         {
-            Debug.Log("shape: " + shape.name);
-
             Button newButton = Instantiate(buttonPrefab, panel2.transform);
             newButton.gameObject.SetActive(true);
             newButton.name = shape.name;
@@ -181,18 +180,17 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 buttonText.text = shape.name;
             }
 
-            GameObject currentShape = shape;
             int currentShapeId = shapeId;
 
             newButton.onClick.AddListener(() =>
             {
-                SelectShape(currentShape);
-                ShapeId = currentShapeId;
+                SelectShape(currentShapeId);
             });
 
             shapeId++;
         }
     }
+
 
     private void SelectMaterial(Material material)
     {
@@ -208,31 +206,26 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void SelectMaterial2(Material material)
     {
         selectedMat2 = material;
-        Renderer renderer = tieMarble.GetComponent<Renderer>();
+        foreach (var tie in tiesMarble)
+        {
+            Renderer renderer = tie.GetComponent<Renderer>();
 
         if (renderer != null)
         {
             renderer.material = material;
         }
+        }
+        
     }
 
-    private void SelectShape(GameObject shape)
+    private void SelectShape(int shapeId)
     {
-        MeshFilter marbleMeshFilter = tieMarble.GetComponent<MeshFilter>();
-        MeshFilter shapeMeshFilter = shape.GetComponentInChildren<MeshFilter>();
+        ShapeId = shapeId;
 
-        if (marbleMeshFilter == null)
+        for (int i = 0; i < tiesMarble.Count; i++)
         {
-            return;
+            tiesMarble[i].SetActive(i == shapeId);
         }
-
-        if (shapeMeshFilter == null)
-        {
-            return;
-        }
-
-        marbleMeshFilter.mesh = shapeMeshFilter.sharedMesh;
-        tieMarble.transform.localScale = shape.transform.localScale;
     }
 
     public void GoAccesories(bool isGoing)
