@@ -15,7 +15,6 @@ public class MainMenuTieCollect : MonoBehaviour
             RefreshAllCollectionStatsUI();
         }
 
-        gameObject.SetActive(false);
     }
 
     private void RefreshAllCollectionStatsUI()
