@@ -30,6 +30,10 @@ public class BasicMovement : MonoBehaviour
     [SerializeField] private float rotationSpeed = 150f;
     [SerializeField] private Vector3 rotationAxis = Vector3.forward;
 
+    [Header("Auto Rotate")]
+    [SerializeField] private bool autoRotate = false;
+    [SerializeField] private float autoRotateSpeed = 15f;
+
     private Rigidbody rb;
     private float targetRotation;
     private bool isGrounded;
@@ -39,6 +43,7 @@ public class BasicMovement : MonoBehaviour
 
     private float coyoteTimeCounter;
     private bool jumpedOfGround;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -101,7 +106,9 @@ public class BasicMovement : MonoBehaviour
         targetRotation = 0f;
 
         if (mazeToRotate != null)
+        {
             mazeToRotate.rotation = Quaternion.identity;
+        }
     }
 
     private Vector3 GetJumpDirection()
@@ -126,6 +133,7 @@ public class BasicMovement : MonoBehaviour
             groundCheckRadius,
             groundLayer
         );
+
         if (isGrounded)
         {
             jumpedOfGround = false;
@@ -228,11 +236,18 @@ public class BasicMovement : MonoBehaviour
         if (mazeToRotate == null)
             return;
 
-        float scroll = Input.mouseScrollDelta.y * SettingsMenu.ScrollSensitivity;
-
-        if (Mathf.Abs(scroll) > 0.01f)
+        if (autoRotate)
         {
-            targetRotation += scroll * rotationSpeed;
+            targetRotation += autoRotateSpeed * Time.deltaTime;
+        }
+        else
+        {
+            float scroll = Input.mouseScrollDelta.y * SettingsMenu.ScrollSensitivity;
+
+            if (Mathf.Abs(scroll) > 0.01f)
+            {
+                targetRotation += scroll * rotationSpeed;
+            }
         }
 
         Quaternion targetRot = Quaternion.AngleAxis(
