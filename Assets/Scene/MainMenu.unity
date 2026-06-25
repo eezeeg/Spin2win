@@ -7590,6 +7590,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 223372943759271039, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 826020783, guid: 9e7c178a2dd063f40b2d00461de986da, type: 3}
     - target: {fileID: 2391155787954175416, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_text
       value: Level 16
@@ -7598,6 +7602,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -61.60014
       objectReference: {fileID: 0}
+    - target: {fileID: 2736207805581630889, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1fd66a2f3aedf214297d1650b6b150b9, type: 3}
     - target: {fileID: 4529635034003907477, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 97.600006
