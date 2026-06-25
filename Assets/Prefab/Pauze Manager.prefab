@@ -1568,6 +1568,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2457664133799409750, guid: 31d85985d275ade4badba6491bf62c6e, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 9163412827450979321}
     - target: {fileID: 2928737169005393262, guid: 31d85985d275ade4badba6491bf62c6e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1576,6 +1580,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4001489606418251637, guid: 31d85985d275ade4badba6491bf62c6e, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 9163412827450979321}
+    - target: {fileID: 4260183387394883476, guid: 31d85985d275ade4badba6491bf62c6e, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 9163412827450979321}
     - target: {fileID: 4334635451600048262, guid: 31d85985d275ade4badba6491bf62c6e, type: 3}
       propertyPath: musicSource
       value: 
@@ -1588,6 +1600,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7247647044263350056, guid: 31d85985d275ade4badba6491bf62c6e, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 9163412827450979321}
     - target: {fileID: 7589546527748216203, guid: 31d85985d275ade4badba6491bf62c6e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

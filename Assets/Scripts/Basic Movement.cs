@@ -11,6 +11,7 @@ public class BasicMovement : MonoBehaviour
     [SerializeField] private float groundCheckDistance = 0.45f;
     [SerializeField] private float groundCheckRadius = 0.25f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float coyoteTime = 0.1f;
 
     [Header("Jump Feel")]
     [SerializeField] private float fallMultiplier = 3.5f;
@@ -36,6 +37,8 @@ public class BasicMovement : MonoBehaviour
     private Transform currentPlatform;
     private Vector3 lastPlatformPosition;
 
+    private float coyoteTimeCounter;
+    private bool jumpedOfGround;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -123,6 +126,15 @@ public class BasicMovement : MonoBehaviour
             groundCheckRadius,
             groundLayer
         );
+        if (isGrounded)
+        {
+            jumpedOfGround = false;
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
     }
 
     private void HandleMovement()
@@ -163,7 +175,7 @@ public class BasicMovement : MonoBehaviour
         if (!Input.GetKeyDown(SettingsMenu.JumpKey))
             return;
 
-        if (!isGrounded)
+        if ((coyoteTimeCounter <= 0f) || jumpedOfGround)
             return;
 
         Vector3 gravityDirection = GetGravityDirection();
@@ -175,6 +187,9 @@ public class BasicMovement : MonoBehaviour
         rb.linearVelocity = velocity;
 
         rb.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
+
+        jumpedOfGround = true;
+        coyoteTimeCounter = 0f;
     }
 
     private void ApplyCustomGravity()
