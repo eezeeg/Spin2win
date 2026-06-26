@@ -279,6 +279,9 @@ MonoBehaviour:
   mazeToRotate: {fileID: 0}
   rotationSpeed: 10
   rotationAxis: {x: 0, y: 0, z: 1}
+  autoRotate: 0
+  autoRotateSpeed: 15
+  oppositeRotationObject: {fileID: 0}
 --- !u!54 &7870293278782442738
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -349,9 +352,9 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: d7a4c4d93ff54aa4081f54655e06e38e, type: 3}
   rollingAudioSource: {fileID: 1523496098650931654}
   hitAudioSource: {fileID: 3746217956119903042}
-  minSpeedToRoll: 0.64
-  rollingVolume: 0.3
-  rollingVolumeMultiplier: 200
+  minSpeedToRoll: 14.93
+  rollingVolume: 0
+  rollingVolumeMultiplier: 0
   rollingFadeSpeed: 8
   minRollingPitch: 0.85
   maxRollingPitch: 1.25
