@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class WinScreenScript : MonoBehaviour
@@ -18,22 +19,55 @@ public class WinScreenScript : MonoBehaviour
     [SerializeField] private Sprite filledStar;
     [SerializeField] private Sprite emptyStar;
 
+    //[Header("Scene Names")]
+    private string levelScenePrefix = "Level_";
+    private string levelSelectSceneName = "MainMenu";
+
     public void ReturnLevelSelect()
     {
-        TransitionManager.Instance.LoadSceneWithFade("MainMenu");
+        TransitionManager.Instance.LoadSceneWithFade(levelSelectSceneName);
+    }
+
+    public void RetryLevel()
+    {
+        TransitionManager.Instance.LoadSceneWithFade(SceneManager.GetActiveScene().name);
+        PauseMenu.PauseLocked = false;
+    }
+
+    public void NextLevel()
+    {
+        WinOrLose winOrLose = FindPlayerWinOrLose();
+
+        if (winOrLose == null)
+        {
+            Debug.LogWarning("Could not find WinOrLose on the Player.");
+            return;
+        }
+
+        int nextLevelId = winOrLose.LevelId + 1;
+        string nextSceneName = levelScenePrefix + nextLevelId;
+
+        PauseMenu.PauseLocked = false;
+        TransitionManager.Instance.LoadSceneWithFade(nextSceneName);
+    }
+
+    private WinOrLose FindPlayerWinOrLose()
+    {
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+
+        if (playerObject == null)
+            return null;
+
+        return playerObject.GetComponent<WinOrLose>();
     }
 
     public void UpdateBoxes(float completion, float best, int starsEarned, int bestStarsEarned)
     {
         if (CompletionBox != null)
-        {
             CompletionBox.text = FormatTime(completion);
-        }
 
         if (BestBox != null)
-        {
             BestBox.text = FormatTime(best);
-        }
 
         SetStars(stars, starsEarned);
         SetStars(bestStars, bestStarsEarned);

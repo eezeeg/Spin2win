@@ -38,7 +38,7 @@ public class WinOrLose : MonoBehaviour
 
     private bool gameEnded;
     private float startTime;
-
+    public int LevelId => levelId;
     private void Start()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");

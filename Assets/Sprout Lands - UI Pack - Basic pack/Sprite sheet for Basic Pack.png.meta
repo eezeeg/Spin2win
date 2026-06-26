@@ -514,7 +514,7 @@ TextureImporter:
         width: 12
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -523,6 +523,28 @@ TextureImporter:
       bones: []
       spriteID: 308ff07ab6400964a8cece032bc88068
       internalID: -224325780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Next
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 226
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdfc76d0afae42e4e93f0b94ce82b0e6
+      internalID: 655501407
       vertices: []
       indices: 
       edges: []
@@ -552,6 +574,7 @@ TextureImporter:
       Difficulty_6: -1242621557
       Frame: -673638259
       Frame 2: -1586309801
+      Next: 655501407
       Setting off: -1750848120
       Setting on: 705081517
       Slider head: -1110370819

@@ -118,7 +118,7 @@ TextureImporter:
         width: 175
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -127,6 +127,28 @@ TextureImporter:
       bones: []
       spriteID: 951bc06e51ca066428a76ca0ace37ba0
       internalID: 1846945504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Retry
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 200
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fa37ae2cf7ef1740902076a608c0c61
+      internalID: -1633413106
       vertices: []
       indices: 
       edges: []
@@ -146,6 +168,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Controls_0: 1846945504
+      Retry: -1633413106
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
