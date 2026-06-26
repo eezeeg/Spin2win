@@ -8,7 +8,7 @@ public class CollectionStatsUI : MonoBehaviour
     [SerializeField] private TMP_Text starsText;
 
     [Header("Settings")]
-    [SerializeField] private int totalLevels = 10;
+    [SerializeField] private int totalLevels = 12;
     [SerializeField] private int starsPerLevel = 3;
 
     private void Start()
