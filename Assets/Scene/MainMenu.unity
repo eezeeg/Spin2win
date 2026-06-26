@@ -3277,6 +3277,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 223372943759271039, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1242621557, guid: 9e7c178a2dd063f40b2d00461de986da, type: 3}
     - target: {fileID: 2391155787954175416, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_text
       value: Level 19
@@ -3284,6 +3288,22 @@ PrefabInstance:
     - target: {fileID: 2509521331773858868, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -61.60014
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736207805581630889, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -224325780, guid: 9e7c178a2dd063f40b2d00461de986da, type: 3}
+    - target: {fileID: 2736207805581630889, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736207805581630889, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736207805581630889, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7924528
       objectReference: {fileID: 0}
     - target: {fileID: 4529635034003907477, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -7184,6 +7204,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 223372943759271039, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1242621557, guid: 9e7c178a2dd063f40b2d00461de986da, type: 3}
     - target: {fileID: 2391155787954175416, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_text
       value: Level 20
@@ -7191,6 +7215,22 @@ PrefabInstance:
     - target: {fileID: 2509521331773858868, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -61.60014
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736207805581630889, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -224325780, guid: 9e7c178a2dd063f40b2d00461de986da, type: 3}
+    - target: {fileID: 2736207805581630889, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736207805581630889, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736207805581630889, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7924528
       objectReference: {fileID: 0}
     - target: {fileID: 4529635034003907477, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -12555,6 +12595,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 223372943759271039, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1242621557, guid: 9e7c178a2dd063f40b2d00461de986da, type: 3}
     - target: {fileID: 2391155787954175416, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_text
       value: Level 18
@@ -12562,6 +12606,22 @@ PrefabInstance:
     - target: {fileID: 2509521331773858868, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -61.60014
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736207805581630889, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -224325780, guid: 9e7c178a2dd063f40b2d00461de986da, type: 3}
+    - target: {fileID: 2736207805581630889, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736207805581630889, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736207805581630889, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7924528
       objectReference: {fileID: 0}
     - target: {fileID: 4529635034003907477, guid: 2c72a3dec062a0d46805a2243c0b64db, type: 3}
       propertyPath: m_AnchoredPosition.x
